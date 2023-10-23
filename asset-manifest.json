@@ -1,16 +1,13 @@
 {
   "files": {
-    "main.css": "/react-car-rent/static/css/main.89115f58.css",
-    "main.js": "/react-car-rent/static/js/main.ef17049b.js",
-    "static/js/787.28cb0dcd.chunk.js": "/react-car-rent/static/js/787.28cb0dcd.chunk.js",
-    "static/media/logo.svg": "/react-car-rent/static/media/logo.b2e5a01e505f739f1484b881277d5186.svg",
+    "main.css": "/react-car-rent/static/css/main.e6c13ad2.css",
+    "main.js": "/react-car-rent/static/js/main.b1afec83.js",
     "index.html": "/react-car-rent/index.html",
-    "main.89115f58.css.map": "/react-car-rent/static/css/main.89115f58.css.map",
-    "main.ef17049b.js.map": "/react-car-rent/static/js/main.ef17049b.js.map",
-    "787.28cb0dcd.chunk.js.map": "/react-car-rent/static/js/787.28cb0dcd.chunk.js.map"
+    "main.e6c13ad2.css.map": "/react-car-rent/static/css/main.e6c13ad2.css.map",
+    "main.b1afec83.js.map": "/react-car-rent/static/js/main.b1afec83.js.map"
   },
   "entrypoints": [
-    "static/css/main.89115f58.css",
-    "static/js/main.ef17049b.js"
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.b1afec83.js"
   ]
 }
