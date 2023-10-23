@@ -4,7 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 const Navbar = () => {
   return (
     <>
-      <div>
+      <div className="outline">
         <ul>
           <li>
             <NavLink to="/">Home</NavLink>
