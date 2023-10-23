@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/kulikiliya/react-car-rent/static/css/main.529abde7.css",
-    "main.js": "/kulikiliya/react-car-rent/static/js/main.846e74e0.js",
-    "static/js/787.28cb0dcd.chunk.js": "/kulikiliya/react-car-rent/static/js/787.28cb0dcd.chunk.js",
-    "static/media/logo.svg": "/kulikiliya/react-car-rent/static/media/logo.b2e5a01e505f739f1484b881277d5186.svg",
-    "index.html": "/kulikiliya/react-car-rent/index.html",
-    "main.529abde7.css.map": "/kulikiliya/react-car-rent/static/css/main.529abde7.css.map",
-    "main.846e74e0.js.map": "/kulikiliya/react-car-rent/static/js/main.846e74e0.js.map",
-    "787.28cb0dcd.chunk.js.map": "/kulikiliya/react-car-rent/static/js/787.28cb0dcd.chunk.js.map"
+    "main.css": "/react-car-rent/static/css/main.89115f58.css",
+    "main.js": "/react-car-rent/static/js/main.ef17049b.js",
+    "static/js/787.28cb0dcd.chunk.js": "/react-car-rent/static/js/787.28cb0dcd.chunk.js",
+    "static/media/logo.svg": "/react-car-rent/static/media/logo.b2e5a01e505f739f1484b881277d5186.svg",
+    "index.html": "/react-car-rent/index.html",
+    "main.89115f58.css.map": "/react-car-rent/static/css/main.89115f58.css.map",
+    "main.ef17049b.js.map": "/react-car-rent/static/js/main.ef17049b.js.map",
+    "787.28cb0dcd.chunk.js.map": "/react-car-rent/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.529abde7.css",
-    "static/js/main.846e74e0.js"
+    "static/css/main.89115f58.css",
+    "static/js/main.ef17049b.js"
   ]
 }
