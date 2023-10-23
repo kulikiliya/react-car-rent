@@ -3,9 +3,11 @@ import Navbar from "./Navbar";
 
 const Header = () => {
   return (
-    <div className="outline">
+    <div className="w-full h-10 flex justify-between items-center	p-6">
       <p>Logo Place</p>
-      <Navbar />
+      <div className="">
+        <Navbar />
+      </div>
     </div>
   );
 };
