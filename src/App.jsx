@@ -10,7 +10,7 @@ import Header from "./components/Header";
 export const App = () => {
   return (
     <>
-      <div className="container mx-auto px-4 flex flex-col gap-0 h-screen h-screen max-w-3xl items-center mr-auto ml-auto	">
+      <div className="px-4 flex flex-col gap-0 h-screen items-center text-gray-600 body-font font-poppins">
         <Header />
         <div className="w-full p-6 flex flex-col items-center justify-between">
           <Routes>
