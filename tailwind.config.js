@@ -12,6 +12,7 @@ module.exports = {
         white: "#ffffff",
         primary: "#3470FF",
         hover: "#0B44CD",
+        "black-rgba": "rgba(255, 255, 255, 1)",
       },
     },
     container: {

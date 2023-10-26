@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Main from "./pages/Main";
@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Favorite from "./pages/Favorite";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Modal from "./components/Modal";
 
 export const App = () => {
   return (

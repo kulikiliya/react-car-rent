@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCars } from "./operation";
+import { fetchCardForModal, fetchCars, fetchCarsByID } from "./operation";
 
 const initialState = {
   cars: [],
-  page: 1,
+  favorites: [],
+  modal: "",
   filter: {
     brand: "",
     price: "",
@@ -23,7 +24,7 @@ const slice = createSlice({
       state.filter.price = payload.price.value;
       state.filter.mileage.from = payload.from;
       state.filter.mileage.to = payload.to;
-      console.log(payload.from);
+      console.log(state.filter.brand);
     },
     addPage: (state, { payload }) => {
       if (payload.page === 1) {
@@ -32,14 +33,27 @@ const slice = createSlice({
         state.cars = [...state.cars, ...payload.data];
       }
     },
+    removeFromFav: (state, { payload }) => {
+      state.favorites = state.favorites.filter((item) => item.id !== payload);
+    },
   },
 
-  // extraReducers: (builder) => {
-  //   builder.addCase(fetchCars.fulfilled, (state, { payload }) => {
-  //     state.cars = payload;
-  //   });
-  // },
+  extraReducers: (builder) => {
+    builder.addCase(fetchCars.fulfilled, (state, { payload }) => {
+      state.cars = payload;
+    });
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCarsByID.fulfilled, (state, { payload }) => {
+        state.favorites = [...state.favorites, payload];
+      })
+      .addCase(fetchCardForModal.fulfilled, (state, { payload }) => {
+        state.modal = payload;
+        console.log(state.modal);
+      });
+  },
 });
 
 export const carsReducer = slice.reducer;
-export const { filerData, addPage } = slice.actions;
+export const { filerData, addPage, removeFromFav } = slice.actions;
