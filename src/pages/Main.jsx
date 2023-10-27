@@ -1,44 +1,36 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import {
-  selectCars,
-  selectFav,
-  selectModalData,
-  selectMyFilter,
-} from "../redux/selectors";
+import { selectCars, selectMyFilter } from "../redux/selectors";
 import Filter from "../components/Filter";
 import LoadMoreButton from "../components/LoadMoreButton";
-import { fetchCardForModal, fetchCarsByID } from "../redux/operation";
-import { removeFromFav } from "../redux/slice";
+import { fetchCardForModal } from "../redux/operation";
 import Modal from "../components/Modal";
 import { useMyContext } from "../components/context/usMyContexst";
 import { IconHeartAct } from "../img/svg/likeActivel";
 import { IconHeartDis } from "../img/svg/likeDisable";
+import CardItem from "../components/CardItem";
+import { removeFromFav } from "../redux/FiterRedux/sliceFilter";
+import { selectFav } from "../redux/FiterRedux/selectorsFilter";
+import { fetchCarsByID } from "../redux/FiterRedux/operationFilter";
 
 const Main = () => {
-  const { isOpen, open, id, setId, setTypeModal, typeModal } = useMyContext();
-  // const [item, setItem] = useContext("");
-  const carsArray = useSelector(selectCars);
+  const { isOpen, open, setId } = useMyContext();
   const filteredCars = useSelector(selectMyFilter);
   const favArray = useSelector(selectFav);
-  const modalData = useSelector(selectModalData);
-
+  const totalCars = useSelector(selectCars);
   const dispatch = useDispatch();
+
   const getId = (id) => {
     dispatch(fetchCarsByID(id));
   };
 
   const handleRemove = (id) => {
-    console.log(id);
     dispatch(removeFromFav(id));
   };
 
   const modelContent = (id) => {
     setId(id);
-    const data = dispatch(fetchCardForModal(id));
-    // const test = id;
-    // const data = carsArray.filter((item) => item.id === test);
+    dispatch(fetchCardForModal(id));
     open();
   };
 
@@ -51,9 +43,9 @@ const Main = () => {
         <ul className="grid grid-cols-4 gap-[29px]">
           {filteredCars?.map((car) => (
             <li key={car.id}>
-              <div className="w-[274px] w-[276px] relative">
+              <div className="relative w-[274px] w-[276px] ">
                 <img
-                  // src={car.img}
+                  src={car.img}
                   alt={car.model}
                   className="w-[400px] h-[268px] outline "
                 />
@@ -75,11 +67,10 @@ const Main = () => {
                       viewBox="0 0 2 16"
                       fill="none"
                     >
-                      <path d="M1 0V16" stroke="#121417" stroke-opacity="0.1" />
+                      <path d="M1 0V16" stroke="#121417" strokeOpacity="0.1" />
                     </svg>
                     <p>{car.type}</p>
                   </div>
-                  {/* <span classame="after:content-[''] after:border-r"></span> */}
                   <div className="flex gap-x-[6px] ">
                     <p>{car.id}</p>
                     <svg
@@ -92,7 +83,6 @@ const Main = () => {
                       <path d="M1 0V16" stroke="#121417" strokeOpacity="0.1" />
                     </svg>
                     <p>{car.engineSize}</p>
-                    {/* <p>{car.functionalities[0]}</p> */}
                   </div>
                 </div>
                 <div className="pt-[28px]">
@@ -132,13 +122,11 @@ const Main = () => {
         </ul>
       </div>
       <div className="w-full flex justify-center">
-        <LoadMoreButton />
+        <LoadMoreButton showButton={totalCars.length !== 32} />
       </div>
       {isOpen ? (
         <Modal>
-          <div className="">
-            <p>{modalData.make}</p>
-          </div>
+          <CardItem />
         </Modal>
       ) : null}
     </div>

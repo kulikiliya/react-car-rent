@@ -9,20 +9,12 @@ export const taskApi = axios.create({
   },
 });
 
-export const fetchCars = createAsyncThunk("fetchAll", async (_, thunkAPI) => {
-  try {
-    const { data } = await taskApi.get("adverts");
-    return data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
-
-export const fetchCardForModal = createAsyncThunk(
-  "fetchForModal",
+export const fetchCarsByID = createAsyncThunk(
+  "fetchById",
   async (id, thunkAPI) => {
     try {
       const { data } = await taskApi.get(`adverts/${id}/`);
+      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

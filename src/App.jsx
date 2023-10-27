@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Main from "./pages/Main";
@@ -16,7 +16,7 @@ export const App = () => {
         <div className="w-full p-6 flex flex-col items-center justify-between">
           <Routes>
             <Route path="/" element={<Home />}></Route>
-            <Route path="/main" element={<Main />}></Route>
+            <Route path="/catalog" element={<Main />}></Route>
             <Route path="/favorite" element={<Favorite />}></Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

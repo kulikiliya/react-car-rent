@@ -1,17 +1,40 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectFav } from "../redux/selectors";
 import LoadMoreButton from "../components/LoadMoreButton";
 import Filter from "../components/Filter";
-import { removeFromFav } from "../redux/slice";
+import { IconHeartDis } from "../img/svg/likeDisable";
+import { IconHeartAct } from "../img/svg/likeActivel";
+import { fetchCardForModal } from "../redux/operation";
+import { useMyContext } from "../components/context/usMyContexst";
+import Modal from "../components/Modal";
+import CardItem from "../components/CardItem";
+import {
+  selectFav,
+  selectMyFilterFav,
+} from "../redux/FiterRedux/selectorsFilter";
+import { removeFromFav } from "../redux/FiterRedux/sliceFilter";
+import { fetchCarsByID } from "../redux/FiterRedux/operationFilter";
 
 const Favorite = () => {
+  const { isOpen, open, setId } = useMyContext();
   const favArray = useSelector(selectFav);
+  const totalFav = useSelector(selectFav);
+  const filterFav = useSelector(selectMyFilterFav);
+
   const dispatch = useDispatch();
 
+  const getId = (id) => {
+    dispatch(fetchCarsByID(id));
+  };
   const handleRemove = (id) => {
     console.log(id);
     dispatch(removeFromFav(id));
+  };
+
+  const modelContent = (id) => {
+    setId(id);
+    dispatch(fetchCardForModal(id));
+    open();
   };
 
   return (
@@ -23,11 +46,11 @@ const Favorite = () => {
         </div>
         <div className="mt-[50px]">
           <ul className="grid grid-cols-4 gap-[29px]">
-            {favArray?.map((car) => (
+            {filterFav?.map((car) => (
               <li key={car.id}>
-                <div className="w-[274px] w-[276px]">
+                <div className="relative w-[274px] w-[276px]">
                   <img
-                    // src={car.img}
+                    src={car.img}
                     alt={car.model}
                     className="w-[400px] h-[268px] outline"
                   />
@@ -52,12 +75,11 @@ const Favorite = () => {
                         <path
                           d="M1 0V16"
                           stroke="#121417"
-                          stroke-opacity="0.1"
+                          strokeOpacity="0.1"
                         />
                       </svg>
                       <p>{car.type}</p>
                     </div>
-                    {/* <span classame="after:content-[''] after:border-r"></span> */}
                     <div className="flex gap-x-[6px] ">
                       <p>{car.id}</p>
                       <svg
@@ -74,18 +96,40 @@ const Favorite = () => {
                         />
                       </svg>
                       <p>{car.engineSize}</p>
-                      {/* <p>{car.functionalities[0]}</p> */}
                     </div>
                   </div>
                   <div className="pt-[28px]">
                     <button
                       type="button"
                       id={car.id}
-                      className="px-[99px] py-[12px] w-[274px] h-[44px] border"
-                      onClick={() => handleRemove(car.id)}
+                      className="flex justify-center items-center px-[99px] py-[12px] w-[274px] h-[44px] border"
+                      onClick={() => modelContent(car.id)}
                     >
-                      Delete
+                      <p className="w-full text-center text-[14px] font-semibold leading-5">
+                        Load more
+                      </p>
                     </button>
+                    <div className="p-1 absolute top-0 right-0 ">
+                      {favArray.some((item) => item.id === car.id) ? (
+                        <div
+                          type="button"
+                          id={car.id}
+                          className="w-fit border"
+                          onClick={() => handleRemove(car.id)}
+                        >
+                          <IconHeartDis />
+                        </div>
+                      ) : (
+                        <div
+                          type="button"
+                          id={car.id}
+                          className="w-fit border"
+                          onClick={() => getId(car.id)}
+                        >
+                          <IconHeartAct />
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </li>
@@ -93,8 +137,13 @@ const Favorite = () => {
           </ul>
         </div>
         <div className="w-full flex justify-center">
-          <LoadMoreButton />
+          <LoadMoreButton showButton={totalFav.length >= 12} />
         </div>
+        {isOpen ? (
+          <Modal>
+            <CardItem />
+          </Modal>
+        ) : null}
       </div>
     </div>
   );

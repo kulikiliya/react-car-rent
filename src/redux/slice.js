@@ -4,7 +4,7 @@ import { fetchCardForModal, fetchCars, fetchCarsByID } from "./operation";
 const initialState = {
   cars: [],
   favorites: [],
-  modal: "",
+  modal: [],
   filter: {
     brand: "",
     price: "",
@@ -36,24 +36,26 @@ const slice = createSlice({
     removeFromFav: (state, { payload }) => {
       state.favorites = state.favorites.filter((item) => item.id !== payload);
     },
+    clearModal: (state, { payload }) => {
+      state.modal = initialState;
+    },
   },
 
-  extraReducers: (builder) => {
-    builder.addCase(fetchCars.fulfilled, (state, { payload }) => {
-      state.cars = payload;
-    });
-  },
+  // extraReducers: (builder) => {
+  //   builder.addCase(fetchCars.fulfilled, (state, { payload }) => {
+  //     state.cars = payload;
+  //   });
+  // },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCarsByID.fulfilled, (state, { payload }) => {
-        state.favorites = [...state.favorites, payload];
-      })
+      // .addCase(fetchCarsByID.fulfilled, (state, { payload }) => {
+      //   state.favorites = [...state.favorites, payload];
+      // })
       .addCase(fetchCardForModal.fulfilled, (state, { payload }) => {
         state.modal = payload;
-        console.log(state.modal);
       });
   },
 });
 
 export const carsReducer = slice.reducer;
-export const { filerData, addPage, removeFromFav } = slice.actions;
+export const { filerData, addPage, removeFromFav, clearModal } = slice.actions;

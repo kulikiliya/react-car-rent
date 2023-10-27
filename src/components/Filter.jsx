@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCars } from "../redux/selectors";
 import { filerData } from "../redux/slice";
 import Select from "react-select";
+import { filerFavData } from "../redux/FiterRedux/sliceFilter";
+import { useLocation } from "react-router-dom";
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -21,14 +23,19 @@ const Filter = () => {
   const costPerHour = myCars.map((item) => item.rentalPrice);
   const uniqueArray = [...new Set(costPerHour)];
   const sortedPrices = uniqueArray
-    .map((price) => Number(price.replace("$", ""))) // Убрать символ "$" и преобразовать в число
+    .map((price) => Number(price.replace("$", "")))
     .sort((a, b) => a - b)
-    .map((item) => `$${item}`); // Отсортировать числа
-
+    .map((item) => `$${item}`);
   const options = sortedPrices.map((item) => ({ value: item, label: item }));
 
+  const { pathname } = useLocation();
+
   const submit = (data) => {
-    dispatch(filerData(data));
+    if (pathname === "/catalog") {
+      dispatch(filerData(data));
+    } else {
+      dispatch(filerFavData(data));
+    }
   };
 
   const DropdownIndicator = (props) => {

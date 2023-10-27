@@ -4,8 +4,6 @@ export const selectCars = (state) => state.vehicles.cars;
 export const selectFav = (state) => state.vehicles.favorites;
 export const selectModalData = (state) => state.vehicles.modal;
 
-// export const selectPage = (state) => state.vehicles.page;
-
 export const selectBrand = (state) => state.vehicles.filter.brand;
 export const selectPrice = (state) => state.vehicles.filter.price;
 export const selectMileageFrom = (state) => state.vehicles.filter.mileage.from;

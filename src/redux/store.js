@@ -12,6 +12,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { favReducer } from "./FiterRedux/sliceFilter";
 
 const persistConfig = {
   key: "vehicles",
@@ -19,11 +20,12 @@ const persistConfig = {
   storage,
   whitelist: ["favorites"],
 };
-const persistedReducer = persistReducer(persistConfig, carsReducer);
+const persistedReducer = persistReducer(persistConfig, favReducer);
 
 export const store = configureStore({
   reducer: {
-    vehicles: persistedReducer,
+    vehicles: carsReducer,
+    favorites: persistedReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
