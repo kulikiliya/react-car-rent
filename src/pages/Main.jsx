@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCars, selectMyFilter } from "../redux/selectors";
+import { selectMyFilter } from "../redux/selectors";
 import Filter from "../components/Filter";
 import LoadMoreButton from "../components/LoadMoreButton";
 import { fetchCardForModal } from "../redux/operation";
@@ -17,9 +17,8 @@ const Main = () => {
   const { isOpen, open, setId } = useMyContext();
   const filteredCars = useSelector(selectMyFilter);
   const favArray = useSelector(selectFav);
-  const totalCars = useSelector(selectCars);
   const dispatch = useDispatch();
-
+  console.log(filteredCars);
   const getId = (id) => {
     dispatch(fetchCarsByID(id));
   };
@@ -100,7 +99,7 @@ const Main = () => {
                     <div
                       type="button"
                       id={car.id}
-                      className="w-fit border"
+                      className="w-fit"
                       onClick={() => handleRemove(car.id)}
                     >
                       <IconHeartDis />
@@ -109,7 +108,7 @@ const Main = () => {
                     <div
                       type="button"
                       id={car.id}
-                      className="w-fit border"
+                      className="w-fit"
                       onClick={() => getId(car.id)}
                     >
                       <IconHeartAct />
@@ -122,7 +121,9 @@ const Main = () => {
         </ul>
       </div>
       <div className="w-full flex justify-center">
-        <LoadMoreButton showButton={totalCars.length !== 32} />
+        <LoadMoreButton
+          showButton={filteredCars.length >= 12 && filteredCars.length < 32}
+        />
       </div>
       {isOpen ? (
         <Modal>

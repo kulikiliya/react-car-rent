@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { taskApi } from "../redux/operation";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addPage } from "../redux/slice";
-import { selectCars, selectFav } from "../redux/selectors";
 
 const LoadMoreButton = ({ showButton }) => {
   const dispatch = useDispatch();
@@ -32,11 +31,14 @@ const LoadMoreButton = ({ showButton }) => {
       console.log(error);
     }
   }, [page, dispatch, fetchData]);
-  // totalCars.length !== 32 && totalFav.length >= 12
+
   return (
     <div>
       {showButton ? (
-        <button className="mt-[100px] border" onClick={handleLoadMore}>
+        <button
+          className="mt-[100px] py-[14px] px-[44px] flex justify-center items-center border rounded-xl bg-primary text-white"
+          onClick={handleLoadMore}
+        >
           Load more
         </button>
       ) : null}

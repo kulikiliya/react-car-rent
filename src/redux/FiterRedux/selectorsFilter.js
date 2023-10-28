@@ -10,14 +10,26 @@ export const selectMileageTo = (state) => state.favorites.filter.mileage.to;
 export const selectMyFilterFav = createSelector(
   [selectFav, selectBrand, selectPrice, selectMileageFrom, selectMileageTo],
   (favorites, brand, price, mileFrom, mileTo) => {
+    console.log(favorites);
+    console.log(brand);
+    console.log(price);
     const from = Number(mileFrom);
     const to = Number(mileTo);
-    return favorites.filter(
-      (el) =>
-        el.model.toLowerCase().includes(brand.toLowerCase()) &&
-        el.rentalPrice.includes(price) &&
-        (from === 0 || el.mileage >= from) &&
-        (to === 0 || el.mileage <= to)
-    );
+    const allBrands = brand === "All" ? "" : brand;
+
+    return favorites.filter((el) => {
+      const brandMatch = allBrands === "" || el.make.includes(allBrands);
+
+      const rentalPrice = Number(el.rentalPrice.replace("$", ""));
+      const priceMatch =
+        price === "All" ||
+        (price === "" && true) ||
+        rentalPrice <= Number(price);
+
+      const mileageMatch = from === 0 || el.mileage >= from;
+      const toMatch = to === 0 || el.mileage <= to;
+
+      return brandMatch && priceMatch && mileageMatch && toMatch;
+    });
   }
 );

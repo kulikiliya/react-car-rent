@@ -18,25 +18,16 @@ const slice = createSlice({
   name: "favorites",
   reducers: {
     filerFavData: (state, { payload }) => {
-      state.filter.brand = payload.brand;
+      console.log(payload);
+      state.filter.brand = payload.brand.value;
       state.filter.price = payload.price.value;
       state.filter.mileage.from = payload.from;
       state.filter.mileage.to = payload.to;
-      console.log(state.filter.brand);
+      console.log(payload.price.value);
     },
-    // addPage: (state, { payload }) => {
-    //   if (payload.page === 1) {
-    //     state.cars = payload.data;
-    //   } else {
-    //     state.cars = [...state.cars, ...payload.data];
-    //   }
-    // },
     removeFromFav: (state, { payload }) => {
       state.favorites = state.favorites.filter((item) => item.id !== payload);
     },
-    // clearModal: (state, { payload }) => {
-    //   state.modal = initialState;
-    // },
   },
 
   extraReducers: (builder) => {

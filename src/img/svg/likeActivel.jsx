@@ -4,7 +4,7 @@ export function IconHeartAct(props) {
   return (
     <svg
       viewBox="0 0 1024 1024"
-      fill="currentColor"
+      fill="#007FFF"
       height="1em"
       width="1em"
       {...props}

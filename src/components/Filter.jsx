@@ -2,31 +2,30 @@ import React from "react";
 import { VscChevronDown, VscChevronUp } from "react-icons/vsc";
 import { components } from "react-select";
 import { Controller, useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { selectCars } from "../redux/selectors";
+import { useDispatch } from "react-redux";
 import { filerData } from "../redux/slice";
 import Select from "react-select";
 import { filerFavData } from "../redux/FiterRedux/sliceFilter";
 import { useLocation } from "react-router-dom";
+import cars from "../components/assets/cars.json";
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const myCars = useSelector(selectCars);
-  const {
-    register,
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, control, handleSubmit } = useForm();
 
   // =================== Price List ====================
-  const costPerHour = myCars.map((item) => item.rentalPrice);
-  const uniqueArray = [...new Set(costPerHour)];
-  const sortedPrices = uniqueArray
-    .map((price) => Number(price.replace("$", "")))
-    .sort((a, b) => a - b)
-    .map((item) => `$${item}`);
-  const options = sortedPrices.map((item) => ({ value: item, label: item }));
+
+  var priceArray = [];
+  for (var i = 1; i <= 10; i++) {
+    let item = i * 10;
+    priceArray.push(item);
+  }
+  const options = [
+    { value: "All", label: "All" },
+    ...priceArray.map((item) => ({ value: item, label: `$${item}` })),
+  ];
+  const carslist = cars.map((item) => ({ value: item, label: item }));
+  console.log(options);
 
   const { pathname } = useLocation();
 
@@ -59,16 +58,31 @@ const Filter = () => {
         className="flex content-center justify-center gap-[18px] relative"
         onSubmit={handleSubmit(submit)}
       >
-        <label className="flex flex-col">
+        <label className="flex flex-col content-center justify-center">
           <p className="absolute bottom-16">Car brand</p>
-          <input {...register("brand")} className="border" />
+          {/* <input {...register("brand")} className="border" /> */}
+          <Controller
+            name="brand"
+            control={control}
+            defaultValue={{ label: "Enter the text", value: "" }}
+            render={({ field }) => (
+              <Select
+                {...field}
+                options={carslist}
+                components={{ DropdownIndicator }}
+                classNames={{
+                  control: () => "",
+                }}
+              />
+            )}
+          />
         </label>
         <label className="flex flex-col content-center justify-center">
           <p className="absolute bottom-16">Price/ 1 hour</p>
           <Controller
             name="price"
             control={control}
-            defaultValue={{ label: "Select Dept", value: "" }}
+            defaultValue={{ label: "To $", value: "" }}
             render={({ field }) => (
               <Select
                 {...field}

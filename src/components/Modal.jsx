@@ -21,7 +21,7 @@ export const Modal = ({ children }) => {
       document.body.style.overflow = "auto";
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [close]);
+  }, [close, dispatch]);
   const handleClick = (e) => {
     if (e.currentTarget === e.target) {
       close();

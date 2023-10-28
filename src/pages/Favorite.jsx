@@ -114,7 +114,7 @@ const Favorite = () => {
                         <div
                           type="button"
                           id={car.id}
-                          className="w-fit border"
+                          className="w-fit"
                           onClick={() => handleRemove(car.id)}
                         >
                           <IconHeartDis />
@@ -123,7 +123,7 @@ const Favorite = () => {
                         <div
                           type="button"
                           id={car.id}
-                          className="w-fit border"
+                          className="w-fit"
                           onClick={() => getId(car.id)}
                         >
                           <IconHeartAct />

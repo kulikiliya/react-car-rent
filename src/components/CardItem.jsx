@@ -1,11 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectModalData } from "../redux/selectors";
-import { useMyContext } from "./context/usMyContexst";
 
 const CardItem = () => {
   const modalData = useSelector(selectModalData);
-  const { isOpen, open, setId } = useMyContext();
 
   console.log(modalData);
 

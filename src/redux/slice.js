@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCardForModal, fetchCars, fetchCarsByID } from "./operation";
+import { fetchCardForModal, fetchCars } from "./operation";
 
 const initialState = {
   cars: [],
@@ -13,6 +13,8 @@ const initialState = {
       to: "",
     },
   },
+  isLoading: false,
+  error: null,
 };
 
 const slice = createSlice({
@@ -20,8 +22,8 @@ const slice = createSlice({
   name: "vehicles",
   reducers: {
     filerData: (state, { payload }) => {
-      state.filter.brand = payload.brand;
-      state.filter.price = payload.price.value;
+      state.filter.brand = payload.brand.value;
+      state.filter.price = payload.price.label;
       state.filter.mileage.from = payload.from;
       state.filter.mileage.to = payload.to;
       console.log(state.filter.brand);
@@ -41,19 +43,21 @@ const slice = createSlice({
     },
   },
 
-  // extraReducers: (builder) => {
-  //   builder.addCase(fetchCars.fulfilled, (state, { payload }) => {
-  //     state.cars = payload;
-  //   });
-  // },
   extraReducers: (builder) => {
-    builder
-      // .addCase(fetchCarsByID.fulfilled, (state, { payload }) => {
-      //   state.favorites = [...state.favorites, payload];
-      // })
-      .addCase(fetchCardForModal.fulfilled, (state, { payload }) => {
-        state.modal = payload;
-      });
+    builder.addCase(fetchCars.fulfilled, (state, { payload }) => {
+      console.log(payload);
+      state.cars = payload;
+    });
+    builder.addCase(fetchCardForModal.fulfilled, (state, { payload }) => {
+      state.modal = payload;
+    });
+    builder.addCase(fetchCardForModal.pending, (state, { payload }) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchCardForModal.rejected, (state, { payload }) => {
+      state.error = payload;
+      state.isLoading = false;
+    });
   },
 });
 

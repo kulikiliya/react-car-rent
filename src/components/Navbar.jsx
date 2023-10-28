@@ -4,21 +4,26 @@ import { NavLink, Outlet } from "react-router-dom";
 const Navbar = () => {
   return (
     <>
-      <div>
-        <ul className="outline flex flex-row gap-3">
-          <li>
-            <NavLink to="/">Home</NavLink>
+      <div className="w-full">
+        <ul className="flex items-center h-full gap-3">
+          <li className="hover:text-blue-600 h-full">
+            <NavLink to="/" className="flex items-center h-full">
+              Home
+            </NavLink>
           </li>
-          <li>
-            <NavLink to="/catalog">Search for the car</NavLink>
+          <li className="hover:text-blue-600 h-full">
+            <NavLink to="/catalog" className="flex items-center h-full">
+              Search for the car
+            </NavLink>
           </li>
-          <li>
-            <NavLink to="/favorite">Your favorite cars!</NavLink>
+          <li className="hover:text-blue-600 h-full">
+            <NavLink to="/favorite" className="flex items-center h-full">
+              Your favorite cars!
+            </NavLink>
           </li>
         </ul>
       </div>
       <hr />
-
       <div>
         <Outlet></Outlet>
       </div>

@@ -6,13 +6,13 @@ import Home from "./pages/Home";
 import Favorite from "./pages/Favorite";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Modal from "./components/Modal";
 
 export const App = () => {
   return (
     <>
       <div className="px-4 flex flex-col gap-0 h-screen items-center text-gray-600 body-font font-poppins">
         <Header />
+
         <div className="w-full p-6 flex flex-col items-center justify-between">
           <Routes>
             <Route path="/" element={<Home />}></Route>
@@ -21,6 +21,7 @@ export const App = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
+
         <Footer />
       </div>
     </>
