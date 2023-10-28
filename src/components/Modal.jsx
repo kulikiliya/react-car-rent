@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { clearModal } from "../redux/slice";
 
 export const Modal = ({ children }) => {
-  const { close, isOpen } = useMyContext();
+  const { close } = useMyContext();
   const dispatch = useDispatch();
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -29,7 +29,6 @@ export const Modal = ({ children }) => {
     }
   };
   const handleClickClose = (e) => {
-    console.log(isOpen);
     close();
     dispatch(clearModal());
   };

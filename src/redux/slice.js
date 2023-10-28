@@ -26,7 +26,6 @@ const slice = createSlice({
       state.filter.price = payload.price.label;
       state.filter.mileage.from = payload.from;
       state.filter.mileage.to = payload.to;
-      console.log(state.filter.brand);
     },
     addPage: (state, { payload }) => {
       if (payload.page === 1) {
@@ -45,7 +44,6 @@ const slice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(fetchCars.fulfilled, (state, { payload }) => {
-      console.log(payload);
       state.cars = payload;
     });
     builder.addCase(fetchCardForModal.fulfilled, (state, { payload }) => {

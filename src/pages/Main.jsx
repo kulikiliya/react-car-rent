@@ -18,7 +18,6 @@ const Main = () => {
   const filteredCars = useSelector(selectMyFilter);
   const favArray = useSelector(selectFav);
   const dispatch = useDispatch();
-  console.log(filteredCars);
   const getId = (id) => {
     dispatch(fetchCarsByID(id));
   };

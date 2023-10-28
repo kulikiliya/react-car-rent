@@ -25,7 +25,6 @@ const Filter = () => {
     ...priceArray.map((item) => ({ value: item, label: `$${item}` })),
   ];
   const carslist = cars.map((item) => ({ value: item, label: item }));
-  console.log(options);
 
   const { pathname } = useLocation();
 

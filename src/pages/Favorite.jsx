@@ -27,7 +27,6 @@ const Favorite = () => {
     dispatch(fetchCarsByID(id));
   };
   const handleRemove = (id) => {
-    console.log(id);
     dispatch(removeFromFav(id));
   };
 

@@ -5,8 +5,6 @@ import { selectModalData } from "../redux/selectors";
 const CardItem = () => {
   const modalData = useSelector(selectModalData);
 
-  console.log(modalData);
-
   return (
     <div>
       <div className="flex flex-col ">

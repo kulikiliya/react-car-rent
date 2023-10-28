@@ -18,12 +18,10 @@ const slice = createSlice({
   name: "favorites",
   reducers: {
     filerFavData: (state, { payload }) => {
-      console.log(payload);
       state.filter.brand = payload.brand.value;
       state.filter.price = payload.price.value;
       state.filter.mileage.from = payload.from;
       state.filter.mileage.to = payload.to;
-      console.log(payload.price.value);
     },
     removeFromFav: (state, { payload }) => {
       state.favorites = state.favorites.filter((item) => item.id !== payload);

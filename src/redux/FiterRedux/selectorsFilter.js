@@ -10,9 +10,6 @@ export const selectMileageTo = (state) => state.favorites.filter.mileage.to;
 export const selectMyFilterFav = createSelector(
   [selectFav, selectBrand, selectPrice, selectMileageFrom, selectMileageTo],
   (favorites, brand, price, mileFrom, mileTo) => {
-    console.log(favorites);
-    console.log(brand);
-    console.log(price);
     const from = Number(mileFrom);
     const to = Number(mileTo);
     const allBrands = brand === "All" ? "" : brand;
